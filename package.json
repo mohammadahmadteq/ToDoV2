@@ -1,0 +1,28 @@
+{
+  "name": "todov2",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd --respawn -r tsconfig-paths/register http/Server/server.ts"
+  },
+  "author": "Mohammad Ahmad",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.2",
+    "tsyringe": "^4.7.0",
+    "typeorm": "^0.3.12"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.3"
+  }
+}
