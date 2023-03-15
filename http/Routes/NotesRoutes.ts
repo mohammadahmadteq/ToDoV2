@@ -5,10 +5,12 @@ const router = Router();
 
 router.get("/search", NotesController.getNotes);
 
-router.post("/add", (req, res) => {
-  console.log(req);
+router.get("/search/:id", NotesController.getSingleNote);
 
-  res.send("added");
-});
+router.post("/add", NotesController.addNotes);
+
+router.put("/update/:id", NotesController.updateNotes);
+
+router.delete("/delete/:id", NotesController.deleteNotes);
 
 export default router;

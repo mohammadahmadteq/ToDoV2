@@ -1,11 +1,12 @@
 import express, { urlencoded } from "express";
 import Routes from "@http/Routes/index";
 
-const TodoAPi = express();
+const TodoApi = express();
 
-TodoAPi.use(urlencoded({ extended: true }));
-TodoAPi.use("/notes", Routes.NotesRoutes);
+TodoApi.use(urlencoded({ extended: true }));
+TodoApi.use("/notes", Routes.NotesRoutes);
+TodoApi.use("/user", Routes.UserRoutes);
 
-TodoAPi.listen(8000);
+TodoApi.listen(8000);
 
-export default TodoAPi;
+export default TodoApi;
