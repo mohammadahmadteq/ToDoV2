@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
     "noImplicitAny": false,
