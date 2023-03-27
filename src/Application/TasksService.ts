@@ -8,9 +8,7 @@ export class TasksService {
     this.TaskRepository = TaskRepository;
   }
 
-  async getTasks() {
-    return await this.TaskRepository.fetchAll();
-  }
+  async getTasks() {}
 
   async addNewTask() {}
 
