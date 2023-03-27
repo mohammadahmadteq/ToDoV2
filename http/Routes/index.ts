@@ -1,3 +1,4 @@
-import NotesRoutes from "./NotesRoutes";
+import TasksRoutes from "./TasksRoutes";
+import UserRoutes from "./UserRoutes";
 
-export default { NotesRoutes };
+export default { TasksRoutes, UserRoutes };
