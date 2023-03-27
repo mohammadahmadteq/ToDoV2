@@ -1,5 +1,8 @@
 import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const dataSourceOptions: DataSourceOptions = {
   type: "mysql",
@@ -10,8 +13,8 @@ const dataSourceOptions: DataSourceOptions = {
   database: process.env.DB_NAME,
   synchronize: process.env.DB_SYNCHRONIZE === "true",
   logging: false,
-  entities: ["/Models/*{.ts,.js}"],
-  migrations: ["/Migrations/*{.ts,.js}"],
+  entities: [__dirname + "/Models/*{.ts,.js}"],
+  migrations: [__dirname + "/Migrations/*{.ts,.js}"],
 };
 
 export const dataSource = new DataSource(dataSourceOptions);

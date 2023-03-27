@@ -1,9 +1,14 @@
+import { TasksService } from "@application/TasksService";
+import { TaskRepository } from "@infrastructure/MySqlRepository/TasksRepository";
 import { Request, Response } from "express";
 
+const taskService = new TasksService(new TaskRepository("tasks"));
 class TasksController {
   static async getTasks(req: Request, res: Response) {
     try {
-      res.status(200).json({ tasks: [] });
+      const tasks = await taskService.getTasks();
+      console.log(tasks);
+      res.status(200).json({ tasks: tasks });
     } catch (error) {
       res.status(500).send(error);
     }
