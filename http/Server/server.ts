@@ -1,4 +1,4 @@
-import express, { urlencoded } from "express";
+import express, { json, urlencoded } from "express";
 import Routes from "@http/Routes/index";
 import { dataSource } from "@infrastructure/Database/data-source";
 const TodoApi = express();
@@ -12,8 +12,10 @@ const starter = async () => {
 };
 
 TodoApi.use(urlencoded({ extended: true }));
+TodoApi.use(json());
 TodoApi.use("/tasks", Routes.TasksRoutes);
 TodoApi.use("/user", Routes.UserRoutes);
+TodoApi.use("/auth", Routes.AuthRoutes);
 dataSource.initialize();
 TodoApi.listen(8000);
 

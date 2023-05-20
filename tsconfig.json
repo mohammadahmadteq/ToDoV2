@@ -18,6 +18,7 @@
     "lib": ["es2020", "es2020.promise", "es2020.bigint", "es2020.string"],
     "baseUrl": "./",
     "paths": {
+      "@dto/*": ["src/DTO/*"],
       "@http/*": ["http/*"],
       "@application/*": ["src/Application/*"],
       "@infrastructure/*": ["src/Infrastructure/*"],

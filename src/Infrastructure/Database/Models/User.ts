@@ -6,25 +6,20 @@ import {
   DeleteDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
-import { UserDBModel } from "./UserModel";
+import { Task } from "./Task";
 
-@Entity("tasks")
-export class TaskDBModel {
+@Entity("Users")
+export class User {
   @PrimaryGeneratedColumn("uuid")
-  taskId: string;
+  userId: string;
 
   @Column()
-  taskHeading: string;
+  username: string;
 
   @Column()
-  taskBody: string;
-
-  @Column()
-  dueDate: string;
-
-  @Column()
-  isFinished: boolean;
+  password: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -35,6 +30,6 @@ export class TaskDBModel {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne((type) => UserDBModel, (user) => user.tasks)
-  user: UserDBModel;
+  @OneToMany((type) => Task, (task) => task.user)
+  tasks: Task[];
 }

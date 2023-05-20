@@ -1,27 +1,28 @@
+import { entityIdGenerator } from "src/Utils/sharedUtils";
+
 export interface ITaskEntity {
-  taskId: string;
+  taskId?: string;
   taskHeading: string;
   taskBody: string;
   dueDate: string;
-  isFinished: boolean;
+  finishedAt?: string;
 }
 
 export class TaskEntity implements ITaskEntity {
   taskId: string;
   taskHeading: string;
-  taskBody: string;
-  dueDate: string;
-  isFinished: boolean;
+  taskBody: string;  dueDate: string;
+  finishedAt: string;
 
   constructor(taskEntity: ITaskEntity) {
-    this.taskId = taskEntity.taskId;
+    this.taskId = taskEntity?.taskId ? taskEntity.taskId : entityIdGenerator();
     this.taskHeading = taskEntity.taskHeading;
     this.dueDate = taskEntity.dueDate;
     this.taskBody = taskEntity.taskBody;
-    this.isFinished = taskEntity.isFinished;
+    this.finishedAt = taskEntity.finishedAt ? taskEntity.finishedAt : null;
   }
 
-  static create(taskEntity): TaskEntity {
+  static create(taskEntity: ITaskEntity): TaskEntity {
     return new TaskEntity(taskEntity);
   }
 }

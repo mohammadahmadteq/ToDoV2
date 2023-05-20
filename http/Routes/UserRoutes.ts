@@ -9,7 +9,7 @@ router.get("/search/:id", UsersController.getSingleUser);
 
 router.post("/add", UsersController.addUsers);
 
-router.put("/update/:id", UsersController.updateUsers);
+router.put("/update", UsersController.updateUsers);
 
 router.delete("/delete/:id", UsersController.deleteUsers);
 

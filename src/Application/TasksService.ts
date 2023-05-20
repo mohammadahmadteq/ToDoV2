@@ -1,18 +1,52 @@
+import { TaskEntity } from "@domain/Entities/TaskEntity/TaskEntity";
 import { ITaskRepository } from "@infrastructure/MySqlRepository/TasksRepository";
-import { GetTaskDTO } from "src/DTO/TaskDTO";
+import { GetTaskDTO, PostTaskDTO, UpdateTaskDTO } from "@dto/TaskDTO";
 
 export class TasksService {
-  TaskRepository: ITaskRepository;
+  taskRepository: ITaskRepository;
 
-  constructor(TaskRepository: ITaskRepository) {
-    this.TaskRepository = TaskRepository;
+  constructor(taskRepository: ITaskRepository) {
+    this.taskRepository = taskRepository;
   }
 
-  async getTasks() {}
+  async getAllTasks() {
+      const isTasks = await this.taskRepository.fetchAll();
 
-  async addNewTask() {}
+      if(isTasks.length <= 0)
+      {
+        throw new Error("404 no data found");
+      }
 
-  async deleteTask() {}
+      const tasks:TaskEntity[] = [];
 
-  async editTask() {}
+      for(const task in isTasks){
+          const newTaskEntity: TaskEntity = TaskEntity.create(isTasks[task]);
+          tasks.push(newTaskEntity);
+      }
+
+      return tasks
+  }
+
+  async addNewTask(postTaskDTO : PostTaskDTO) {
+    const taskEntity: TaskEntity = TaskEntity.create(postTaskDTO);
+    await this.taskRepository.create(taskEntity);
+    return taskEntity;
+  }
+
+  async deleteTask(taskId: string) {
+      await this.taskRepository.remove({
+        taskId: taskId
+      });
+
+      return;
+  }
+
+  async editTask(updateTaskDTO: UpdateTaskDTO) {
+    const taskEntity: TaskEntity = TaskEntity.create(updateTaskDTO);
+    console.log(taskEntity);
+      await this.taskRepository.update({
+        taskId: updateTaskDTO.taskId
+      }, taskEntity);
+      return taskEntity ;
+  }
 }
